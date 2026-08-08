@@ -19,9 +19,7 @@ The goal of this project is to demonstrate how an AI Voice Co-Pilot can support 
 ## 🔄 How It Works
 
 ```text
-🎙️ Customer speaks
-        ↓
-📝 Speech-to-Text
+📝 Customer Input text
         ↓
 🧠 AI understands the input
         ↓
@@ -35,10 +33,6 @@ The goal of this project is to demonstrate how an AI Voice Co-Pilot can support 
 The conversation continues naturally, allowing the customer to ask follow-up questions without using predefined questions.
 
 ## ✨ Key Features
-
-### 🎤 Voice Input
-
-The customer can speak naturally using the laptop microphone.
 
 ### 🧠 AI Understanding
 
@@ -75,17 +69,14 @@ The assistant does not make final credit or financial decisions and does not cla
 * React
 * Vite
 * TypeScript
-* Tailwind CSS
 
 ### Voice
 
 * Web Speech API / Speech Recognition
-* Browser SpeechSynthesis API
 
 ### AI
 
 * Large Language Model (LLM)
-* Context-aware conversation processing
 
 ### Development
 
@@ -141,16 +132,15 @@ Open the application in your browser using the local URL provided by Vite.
 ## 🎙️ How to Use
 
 1. Open the application.
-2. Allow microphone access.
-3. Click **Start Conversation**.
-4. Speak naturally into the laptop microphone.
-5. The application converts your speech into text.
-6. The AI analyzes the message.
-7. The AI generates an appropriate response.
-8. The response is displayed on the screen.
-9. The response is spoken through the laptop speakers.
-10. Continue speaking to maintain the conversation.
-11. Click **End Conversation** when finished.
+2. Click **Start Conversation**.
+3. When the Customer gives Input text.
+4. The AI analyzes the message.
+5. The AI generates an appropriate response.
+6. The response is displayed on the screen.
+7. The response is spoken through the laptop speakers.
+8. Continue speaking to maintain the conversation.
+9. Click **End Conversation** when finished.
+10. It will give the Summary of the Conversation.
 
 ## 💡 Example Conversation
 
