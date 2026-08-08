@@ -1,13 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { User, Bot, Volume2, Sparkles } from 'lucide-react';
-import { ChatMessage, AppStatus } from '../types/chat';
+import { ChatMessage, AppStatus, CopilotMode } from '../types/chat';
 
 interface ConversationAreaProps {
   messages: ChatMessage[];
   status: AppStatus;
+  mode?: CopilotMode;
 }
 
-export const ConversationArea: React.FC<ConversationAreaProps> = ({ messages, status }) => {
+export const ConversationArea: React.FC<ConversationAreaProps> = ({ messages, status, mode = 'agent_assist' }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,7 +24,9 @@ export const ConversationArea: React.FC<ConversationAreaProps> = ({ messages, st
       <div className="flex items-center justify-between pb-4 border-b border-fintech-border mb-4">
         <div className="flex items-center space-x-2">
           <Sparkles className="w-4 h-4 text-emerald-400" />
-          <h2 className="text-sm font-semibold text-slate-200 uppercase tracking-wider">Customer Conversation</h2>
+          <h2 className="text-sm font-semibold text-slate-200 uppercase tracking-wider">
+            {mode === 'agent_assist' ? 'Live Call Transcript' : 'Customer Conversation'}
+          </h2>
         </div>
         <span className="text-xs text-slate-500 font-mono">{messages.length} messages</span>
       </div>
@@ -37,7 +40,7 @@ export const ConversationArea: React.FC<ConversationAreaProps> = ({ messages, st
             </div>
             <p className="text-sm font-medium">No conversation history yet.</p>
             <p className="text-xs text-slate-600 max-w-xs">
-              Click <span className="text-emerald-400 font-semibold">Start Conversation</span> or speak into your microphone to start chatting about Pay-in-3.
+              Click <span className="text-emerald-400 font-semibold">Start Conversation</span> to begin. The copilot will analyze intent, surface knowledge, and suggest next best actions in real time.
             </p>
           </div>
         ) : (
@@ -60,7 +63,7 @@ export const ConversationArea: React.FC<ConversationAreaProps> = ({ messages, st
                   ) : (
                     <>
                       <Bot className="w-3 h-3" />
-                      <span>AI VOICE CO-PILOT</span>
+                      <span>{mode === 'agent_assist' ? 'AGENT WHISPER' : 'AI VOICE CO-PILOT'}</span>
                     </>
                   )}
                   <span className="text-slate-500 font-normal ml-1">• {msg.timestamp}</span>

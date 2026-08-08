@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Clock, MessageSquare, Activity } from 'lucide-react';
-import { AppStatus } from '../types/chat';
+import { AppStatus, IntentAnalysis } from '../types/chat';
 
 interface StatBarProps {
   status: AppStatus;
   turnCount: number;
   isActive: boolean;
+  intent?: IntentAnalysis | null;
 }
 
-export const StatBar: React.FC<StatBarProps> = ({ status, turnCount, isActive }) => {
+export const StatBar: React.FC<StatBarProps> = ({ status, turnCount, isActive, intent }) => {
   const [seconds, setSeconds] = useState<number>(0);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export const StatBar: React.FC<StatBarProps> = ({ status, turnCount, isActive })
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       
       {/* Current Status Card */}
       <div className="bg-fintech-card border border-fintech-border p-4 rounded-xl flex items-center space-x-3">
@@ -66,6 +67,19 @@ export const StatBar: React.FC<StatBarProps> = ({ status, turnCount, isActive })
         <div>
           <p className="text-xs text-slate-400 font-medium">Number of turns</p>
           <p className="text-sm font-semibold text-white">{turnCount}</p>
+        </div>
+      </div>
+
+      {/* Current intent */}
+      <div className="bg-fintech-card border border-fintech-border p-4 rounded-xl flex items-center space-x-3">
+        <div className="p-2.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
+          <Activity className="w-5 h-5" />
+        </div>
+        <div>
+          <p className="text-xs text-slate-400 font-medium">Latest intent</p>
+          <p className="text-sm font-semibold text-white truncate">
+            {intent ? intent.label : '—'}
+          </p>
         </div>
       </div>
 
